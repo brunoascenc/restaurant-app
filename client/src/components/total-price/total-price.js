@@ -1,15 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCheckoutTotal } from '../../redux/checkout-list/checkout-selector';
 
 const TotalContainer = styled.div``;
 
-const TotalPrice = () => {
+const TotalPrice = ({ totalPrice }) => {
+  const fixedTotalPrice = totalPrice.toFixed(2).toString().replace('.', ',');
+
   return (
     <TotalContainer>
       <h3>Total a pagar:</h3>
-      <span>R$: 0000</span>
+      <span>R$: {fixedTotalPrice}</span>
     </TotalContainer>
   );
 };
 
-export default TotalPrice;
+const mapStateToProps = createStructuredSelector({
+  totalPrice: selectCheckoutTotal,
+});
+
+export default connect(mapStateToProps)(TotalPrice);

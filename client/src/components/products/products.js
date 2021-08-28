@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFood } from '../../redux/checkout-list/checkout-actions';
+import { fetchMenuData } from '../../redux/menu-data/menu-actions';
 
 const Products = () => {
+  const dispatch = useDispatch();
+  const menuItems = useSelector((state) => state.menu);
+
+  useEffect(() => {
+    dispatch(fetchMenuData());
+  }, [dispatch]);
+
   return (
     <ul>
-      <li>Suco de uva R$: 1,00</li>
-      <li>X-Bacon R$: 5,00</li>
-      <li>X-Tudo R$: 8,00</li>
-      <li>Pizza R$: 15,00</li>
+      {menuItems.results.map((item) => {
+        return (
+          <li key={item.id}>
+            <div>
+              {item.sabor}
+              {item.descricao}
+            </div>
+            <span>Preço: R$: </span>
+            {item.preco}
+            <button onClick={() => dispatch(addFood(item))}>Selecionar</button>
+          </li>
+        );
+      })}
     </ul>
   );
 };

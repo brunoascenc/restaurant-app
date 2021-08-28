@@ -1,6 +1,6 @@
 import React from 'react';
 import Products from '../../components/products/products';
-import ProductsList from '../../components/products-list/products-list';
+import CheckoutList from '../../components/checkout-list/checkout-list';
 import TotalPrice from '../../components/total-price/total-price';
 import InputBox from '../../components/input-box/input-box';
 import styled from 'styled-components';
@@ -22,7 +22,7 @@ const Checkout = () => {
       <div>
         <InputBox placeholder={'Digite seu nome'} />
         <TotalPrice />
-        <ProductsList />
+        <CheckoutList />
       </div>
     </CheckoutContainer>
   );
