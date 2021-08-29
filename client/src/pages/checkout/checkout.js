@@ -2,7 +2,6 @@ import React from 'react';
 import Products from '../../components/products/products';
 import CheckoutList from '../../components/checkout-list/checkout-list';
 import TotalPrice from '../../components/total-price/total-price';
-import InputBox from '../../components/input-box/input-box';
 import styled from 'styled-components';
 
 const CheckoutContainer = styled.div`
@@ -16,11 +15,10 @@ const Checkout = () => {
   return (
     <CheckoutContainer>
       <div>
-        <InputBox placeholder={'Nome ou código...'} />
+        {/* <InputBox placeholder={'Nome ou código...'} /> */}
         <Products />
       </div>
       <div>
-        <InputBox placeholder={'Digite seu nome'} />
         <TotalPrice />
         <CheckoutList />
       </div>

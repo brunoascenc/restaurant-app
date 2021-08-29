@@ -18,6 +18,7 @@ const CheckoutList = () => {
   return (
     <ListContainer>
       <h1>Seus pedidos</h1>
+      <input type="text" placeholder="Seu nome..." />
       <ul>
         {checkoutList.map((item) => {
           return (
@@ -39,7 +40,7 @@ const CheckoutList = () => {
         })}
       </ul>
       <FinishButton onClick={() => dispatch(clearList())}>
-        Finalizar
+        Fazer pedido
       </FinishButton>
     </ListContainer>
   );
