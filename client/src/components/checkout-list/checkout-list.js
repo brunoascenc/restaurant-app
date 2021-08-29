@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {
@@ -7,6 +7,7 @@ import {
   incrementItem,
   decrementItem,
 } from '../../redux/checkout-list/checkout-actions';
+import { getOrders } from '../../redux/kitchen/kitchen-actions';
 
 const ListContainer = styled.div``;
 const FinishButton = styled.button``;
@@ -14,11 +15,16 @@ const FinishButton = styled.button``;
 const CheckoutList = () => {
   const dispatch = useDispatch();
   const checkoutList = useSelector((state) => state.checkout.results);
+  const [name, setName] = useState('');
 
   return (
     <ListContainer>
       <h1>Seus pedidos</h1>
-      <input type="text" placeholder="Seu nome..." />
+      <input
+        type="text"
+        placeholder="Seu nome..."
+        onChange={(e) => setName(e.target.value)}
+      />
       <ul>
         {checkoutList.map((item) => {
           return (
@@ -39,7 +45,12 @@ const CheckoutList = () => {
           );
         })}
       </ul>
-      <FinishButton onClick={() => dispatch(clearList())}>
+      <FinishButton
+        onClick={() => {
+          dispatch(getOrders(checkoutList, name));
+          dispatch(clearList());
+        }}
+      >
         Fazer pedido
       </FinishButton>
     </ListContainer>
