@@ -1,11 +1,5 @@
 import KitchenActionTypes from './kitchen-types';
 
-export const fetchOrdersRequest = () => {
-  return {
-    type: KitchenActionTypes.FETCH_ORDERS_START,
-  };
-};
-
 export const getOrders = (data) => {
   return {
     type: KitchenActionTypes.FETCH_ORDERS_SUCCESS,
@@ -13,9 +7,9 @@ export const getOrders = (data) => {
   };
 };
 
-export const fetchOrdersFailure = (error) => {
+export const getClientName = (name) => {
   return {
-    type: KitchenActionTypes.FETCH_ORDERS_FAILURE,
-    payload: error,
+    type: KitchenActionTypes.GET_CLIENT_NAME,
+    data: name,
   };
 };

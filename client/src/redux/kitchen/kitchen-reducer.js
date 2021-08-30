@@ -1,29 +1,27 @@
 import KitchenActionTypes from './kitchen-types';
 
 const initialState = {
-  loading: false,
-  results: [],
-  error: '',
+  results: {
+    name: '',
+    orders: [],
+  },
+  // name: '',
 };
 
 const getOrdersData = (state = initialState, action) => {
   switch (action.type) {
-    case KitchenActionTypes.FETCH_ORDERS_START:
-      return {
-        ...state,
-        loading: true,
-      };
     case KitchenActionTypes.FETCH_ORDERS_SUCCESS:
       return {
         ...state,
-        loading: false,
-        results: action.payload,
+        results: {
+          ...state.results,
+          orders: [...state.results.orders, action.payload],
+        },
       };
-    case KitchenActionTypes.FETCH_ORDERS_FAILURE:
+    case KitchenActionTypes.GET_CLIENT_NAME:
       return {
         ...state,
-        loading: false,
-        error: action.payload,
+        name: action.payload,
       };
     default:
       return state;

@@ -7,7 +7,7 @@ import {
   incrementItem,
   decrementItem,
 } from '../../redux/checkout-list/checkout-actions';
-import { getOrders } from '../../redux/kitchen/kitchen-actions';
+import { getOrders, getClientName } from '../../redux/kitchen/kitchen-actions';
 
 const ListContainer = styled.div``;
 const FinishButton = styled.button``;
@@ -23,7 +23,7 @@ const CheckoutList = () => {
       <input
         type="text"
         placeholder="Seu nome..."
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => dispatch(getClientName(e.target.value))}
       />
       <ul>
         {checkoutList.map((item) => {
@@ -39,7 +39,7 @@ const CheckoutList = () => {
               <h1>{item.quantity}</h1>
               <button onClick={() => dispatch(incrementItem(item))}>+</button>
               <button onClick={() => dispatch(removeFood(item))}>
-                remover
+                Remover
               </button>
             </li>
           );
